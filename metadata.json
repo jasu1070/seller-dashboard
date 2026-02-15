@@ -1,0 +1,5 @@
+{
+  "name": "E-commerce Seller Dashboard",
+  "description": "A SaaS dashboard for e-commerce sellers to manage orders, products, and payments, inspired by platforms like Meesho. It features a data-first, user-friendly design.",
+  "requestFramePermissions": []
+}

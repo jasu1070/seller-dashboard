@@ -1,0 +1,171 @@
+<div>
+  <!-- Performance Cards -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2 bg-white p-6 rounded-lg border shadow-md">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">Bad Quality Score</h3>
+          <p class="text-sm text-gray-500 mt-1">Number of 1 & 2 star ratings (quality-related) divided by total number of ratings on catalog</p>
+          <a href="#" class="text-sm font-semibold text-brand-primary hover:underline">See Example ></a>
+        </div>
+         <div class="relative">
+          <input type="text" placeholder="Search by Catalog ID" class="pl-9 pr-4 py-2 border rounded-md text-sm w-64 focus:ring-brand-primary focus:border-brand-primary">
+          <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div class="flex justify-between text-sm text-gray-500 px-1">
+          <span>25 Catalogs</span>
+          <span>45 Catalogs</span>
+        </div>
+        <div class="relative w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-green-500 h-3 rounded-l-full" style="width: 16%"></div>
+          <div class="absolute top-0 h-3 border-r-2 border-white" style="left: 16%"></div>
+          <div class="absolute top-0 h-3 border-r-2 border-white" style="left: 40%"></div>
+        </div>
+        <div class="flex justify-between text-xs text-gray-500 mt-1">
+          <span>0</span>
+          <span class="font-bold text-green-600">{{badQualityScore}}%</span>
+          <span>100%</span>
+        </div>
+      </div>
+      <div class="mt-4 inline-block bg-green-100 text-green-700 font-semibold text-sm px-4 py-2 rounded-md border border-green-200">
+        Target Bad Quality Score: 16%
+      </div>
+    </div>
+    <div class="bg-white p-6 rounded-lg border flex flex-col items-center justify-center shadow-md">
+      <img src="https://supplier.meesho.com/images/m-trusted.svg" alt="M-Trusted Logo" class="h-8">
+      <p class="text-sm mt-2">Your Rating: <span class="font-bold text-gray-800">1.0 ★</span></p>
+      <a href="#" class="mt-2 text-sm font-semibold text-brand-primary hover:underline">Learn more</a>
+    </div>
+  </div>
+
+  <!-- Main Table Card -->
+  <div class="bg-white rounded-lg border shadow-md mt-6">
+    <!-- Tabs -->
+    <div class="border-b border-gray-200 px-4 pt-4">
+      <div class="flex justify-between items-center">
+          <nav class="-mb-px flex space-x-8">
+              <button (click)="activeTab.set('need-attention')" [class]="activeTab() === 'need-attention' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-500 hover:text-gray-700'" class="whitespace-nowrap pb-3 px-1 border-b-2 font-semibold text-sm">
+                  Need Attention (20) <i class="text-gray-400">ⓘ</i>
+              </button>
+              <button (click)="activeTab.set('other-catalogs')" [class]="activeTab() === 'other-catalogs' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-500 hover:text-gray-700'" class="whitespace-nowrap pb-3 px-1 border-b-2 font-semibold text-sm">
+                  Other Catalogs (60) <i class="text-gray-400">ⓘ</i>
+              </button>
+          </nav>
+          <a href="#" class="text-sm font-semibold text-brand-primary hover:underline pb-2">Blocked Catalogs (20) <i class="text-gray-400">ⓘ</i></a>
+      </div>
+    </div>
+
+    <!-- Filters & Sorting -->
+    <div class="p-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <button (click)="activeSubTab.set('low-visibility')" [class]="activeSubTab() === 'low-visibility' ? 'bg-indigo-100 text-brand-primary border-indigo-200' : 'bg-white text-gray-700 border-gray-300'" class="px-3 py-1 text-sm font-medium rounded-full border">
+            Low Visibility (10)
+          </button>
+          <button (click)="activeSubTab.set('risk-of-getting-blocked')" [class]="activeSubTab() === 'risk-of-getting-blocked' ? 'bg-indigo-100 text-brand-primary border-indigo-200' : 'bg-white text-gray-700 border-gray-300'" class="px-3 py-1 text-sm font-medium rounded-full border">
+            Risk of Getting Blocked (10)
+          </button>
+        </div>
+        <div class="flex items-center space-x-4 text-sm">
+          <div class="flex items-center space-x-2">
+            <label for="filter" class="text-gray-600">Filter by:</label>
+            <select id="filter" class="border rounded-md py-1.5 px-3 focus:ring-brand-primary focus:border-brand-primary">
+              <option>Category</option>
+            </select>
+          </div>
+          <div class="flex items-center space-x-2">
+            <label for="sort" class="text-gray-600">Sort by:</label>
+            <select id="sort" class="border rounded-md py-1.5 px-3 focus:ring-brand-primary focus:border-brand-primary">
+              <option>Delivered Orders: High to Low</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 bg-yellow-50 text-yellow-800 p-3 rounded-md flex items-center text-sm border border-yellow-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.21 3.03-1.742 3.03H4.42c-1.532 0-2.492-1.696-1.742-3.03l5.58-9.92zM10 13a1 1 0 110-2 1 1 0 010 2zm-1-8a1 1 0 00-1 1v3a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+        These catalogs are not visible to some customers and are missing out on orders
+      </div>
+    </div>
+
+    <!-- Catalogs Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead class="bg-gray-50">
+          <tr class="text-left text-xs font-semibold text-gray-600 uppercase">
+            @for (header of ['Catalog', 'Bad Quality Score', '1 and 2 Star Ratings', 'Total Number of Ratings', 'Average Orders / Day', 'Actions']; track header) {
+              <th class="px-4 py-3">{{header}} <i class="text-gray-400">ⓘ</i></th>
+            }
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          @for (catalog of paginatedCatalogs(); track catalog.id) {
+            <tr class="text-sm text-gray-800">
+              <td class="px-4 py-3">
+                <div class="flex items-center">
+                  <div class="flex -space-x-4">
+                    <img [src]="catalog.images[0]" class="h-16 w-16 rounded-md object-cover border-2 border-white z-10" alt="">
+                    <div class="h-16 w-16 rounded-md bg-gray-100 border-2 border-white flex items-center justify-center text-gray-500 font-semibold">
+                      +{{catalog.images.length -1}}
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <p class="font-semibold">{{catalog.name}}</p>
+                    <p class="text-xs text-gray-500">Catalog ID: {{catalog.catalogId}}</p>
+                    <p class="text-xs text-gray-500">Catalog Rating: <span class="font-bold">{{catalog.rating}} ★</span></p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-3">
+                  <p class="font-semibold">{{catalog.badQualityScore}}%</p>
+                  @if(catalog.reason) {
+                      <div class="mt-1 text-xs text-red-600 bg-red-50 border border-red-200 rounded px-2 py-1 inline-block">
+                          {{catalog.reason}}
+                      </div>
+                  }
+              </td>
+              <td class="px-4 py-3 font-semibold">{{catalog.oneAndTwoStarRatings}}</td>
+              <td class="px-4 py-3 font-semibold">{{catalog.totalRatings}}</td>
+              <td class="px-4 py-3 font-semibold">{{catalog.avgOrdersPerDay}}</td>
+              <td class="px-4 py-3">
+                <button class="px-4 py-2 text-sm font-semibold rounded-md border bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary">
+                  View Details
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr><td colspan="6" class="text-center p-8 text-gray-500">No catalogs found.</td></tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="flex justify-between items-center p-4 text-sm text-gray-600">
+      <div>
+        <label>Items / page</label>
+        <select class="ml-2 border rounded-md p-1">
+          <option>10</option>
+          <option>20</option>
+          <option>50</option>
+        </select>
+      </div>
+      <div class="flex items-center space-x-2">
+          <button (click)="setPage(currentPage() - 1)" [disabled]="currentPage() === 1" class="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+          </button>
+          @for (page of paginationPages(); track $index) {
+            @if (page === '...') {
+              <span class="px-3 py-1 text-gray-500">...</span>
+            } @else {
+              <button (click)="setPage(+page)" [class]="currentPage() === page ? 'bg-brand-primary text-white' : 'hover:bg-gray-100'" class="px-3 py-1 rounded-md">{{page}}</button>
+            }
+          }
+          <button (click)="setPage(currentPage() + 1)" [disabled]="currentPage() === totalPages()" class="p-1 rounded-md hover:bg-gray-100 disabled:opacity-50">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>
